@@ -1,0 +1,23 @@
+{
+  "individual": [
+    71.39999999999999,
+    74.3,
+    70.19999999999999,
+    78.9,
+    73.9
+  ],
+  "simple_average": 98.4,
+  "voting": 96.7,
+  "ds_fusion": 86.6,
+  "avg_uncertainty": {
+    "belief": 0.9617956073267953,
+    "plausibility": 0.9617956073267953,
+    "conflict": 0.5627672206015895,
+    "interval_width": 0.0
+  },
+  "conflict_analysis": {
+    "correct": 0.514643418764264,
+    "wrong": 0.8737762682965426,
+    "difference": 0.35913284953227864
+  }
+}

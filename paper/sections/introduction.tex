@@ -1,0 +1,21 @@
+Deep learning has revolutionized image classification, achieving unprecedented accuracy on benchmark datasets such as ImageNet~\cite{krizhevsky2012imagenet} and CIFAR-10~\cite{krizhevsky2009learning}. However, despite their impressive performance, modern deep learning models face critical challenges: (1) they often provide overconfident predictions without proper uncertainty quantification, and (2) ensemble methods that combine multiple models typically use simplistic fusion strategies such as averaging or voting, which fail to capture the epistemic uncertainty inherent in the predictions.
+
+Ensemble learning has long been recognized as an effective approach to improve model robustness and accuracy~\cite{dietterich2000ensemble}. Traditional ensemble methods combine predictions from multiple models through voting, averaging, or weighted combinations. While these approaches can improve performance, they treat all model outputs equally or use fixed weights, failing to account for the varying reliability of different models on different samples. Moreover, they provide no explicit mechanism to quantify the uncertainty or detect conflicts in the ensemble predictions.
+
+Dempster-Shafer (DS) theory, also known as evidence theory~\cite{shafer1976mathematical}, provides a rigorous mathematical framework for reasoning under uncertainty and combining evidence from multiple sources. Unlike probabilistic approaches, DS theory explicitly distinguishes between lack of evidence and conflicting evidence, making it particularly suitable for multi-source information fusion. Despite its theoretical advantages, DS theory has seen limited application in modern deep learning ensembles, with most existing work focusing on traditional machine learning methods or specific medical imaging applications.
+
+This paper addresses these limitations by proposing an adaptive multi-model ensemble fusion framework based on DS evidence theory. Our key contributions are:
+
+\begin{itemize}
+\item \textbf{Novel Belief Assignment}: We develop a method to convert neural network softmax outputs into DS mass functions with multiple assignment strategies including direct transfer, temperature scaling, and calibration-based approaches.
+
+\item \textbf{Conflict-Aware Fusion}: We implement an enhanced Dempster's rule of combination with conflict detection and adaptive handling, allowing the ensemble to identify when models strongly disagree.
+
+\item \textbf{Uncertainty Quantification}: We provide comprehensive uncertainty metrics including belief, plausibility, and doubt measures for each prediction, along with belief-plausibility intervals that capture prediction uncertainty.
+
+\item \textbf{Empirical Validation}: We conduct extensive experiments on CIFAR-10 using five diverse CNN architectures (ResNet-18, ResNet-34, VGG-16, MobileNet-V2, DenseNet-121), demonstrating improvements over traditional ensemble methods and revealing strong correlations between conflict measures and prediction errors.
+\end{itemize}
+
+Our experimental results show that DS-based fusion provides meaningful uncertainty quantification, with conflict measures being significantly higher for incorrect predictions (0.36 difference on average). This makes our approach valuable for safety-critical applications where knowing when the model is uncertain is as important as the prediction itself.
+
+The remainder of this paper is organized as follows: Section~\ref{sec:related} reviews related work on ensemble learning and DS theory applications. Section~\ref{sec:methodology} describes our DS-based ensemble framework in detail. Section~\ref{sec:experiments} presents our experimental setup. Section~\ref{sec:results} reports and analyzes the results. Section~\ref{sec:discussion} discusses implications and limitations, and Section~\ref{sec:conclusion} concludes the paper.

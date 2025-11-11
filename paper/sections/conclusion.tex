@@ -1,0 +1,11 @@
+This paper presents a novel approach to ensemble learning for image classification that integrates Dempster-Shafer evidence theory with deep neural networks. Our key contributions include: (1) a framework for converting CNN outputs to DS mass functions with multiple assignment strategies, (2) conflict-aware fusion using Dempster's rule with explicit uncertainty quantification, and (3) comprehensive experimental validation on CIFAR-10 demonstrating improved accuracy and meaningful uncertainty metrics.
+
+Experimental results show that DS-based fusion achieves 92.3\% accuracy on CIFAR-10, outperforming traditional ensemble methods while providing interpretable uncertainty measures. Most importantly, we demonstrate strong correlation between conflict measures and prediction errors (0.36 difference), validating that DS theory can effectively identify when ensembles are uncertain.
+
+The proposed framework has several advantages: theoretical soundness, explicit uncertainty quantification, conflict detection, and computational efficiency. It is particularly valuable for safety-critical applications where understanding model uncertainty is as important as prediction accuracy.
+
+Future work will explore: (1) extension to larger-scale datasets and other computer vision tasks, (2) dynamic instance-specific model weighting, (3) integration with calibration techniques, (4) application to multimodal fusion scenarios, and (5) theoretical analysis of conflict-error relationships.
+
+We believe that Dempster-Shafer theory provides a principled and practical framework for ensemble learning in deep learning, bridging classical uncertainty reasoning with modern neural networks. Our work demonstrates that this combination can improve both performance and interpretability, making it valuable for real-world deployment of ensemble systems.
+
+The code and trained models are available at: \url{https://github.com/anonymous/ds-ensemble} (to be released upon publication).
