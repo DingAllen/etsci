@@ -1,0 +1,61 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage[margin=0.75in]{geometry}
+
+\begin{document}
+
+\title{Adaptive Multi-Model Ensemble Fusion with Dempster-Shafer Theory for Robust Image Classification}
+
+\author{Anonymous Author\\
+Department of Computer Science, University\\
+City, Country\\
+\texttt{email@university.edu}}
+
+\maketitle
+
+\begin{abstract}
+Deep learning models have achieved remarkable success in image classification tasks, yet they often lack explicit uncertainty quantification and struggle with conflicting predictions from ensemble methods. This paper proposes a novel approach to ensemble learning that integrates Dempster-Shafer (DS) evidence theory with deep neural network ensembles. Unlike traditional ensemble methods that rely on simple averaging or voting, our method explicitly models uncertainty through belief and plausibility functions, detects conflicts between models, and provides interpretable confidence measures. We evaluate our approach on the CIFAR-10 dataset using diverse CNN architectures including ResNet, VGG, MobileNet, and DenseNet. Experimental results demonstrate that DS-based fusion not only improves classification accuracy but also provides meaningful uncertainty quantification. Our conflict analysis reveals that the conflict measure strongly correlates with prediction errors (0.36 higher for incorrect predictions), making it a valuable indicator for model reliability. The proposed framework offers a principled approach to ensemble fusion with applications in safety-critical computer vision systems.
+\end{abstract}
+
+\textbf{Keywords:} Dempster-Shafer theory, evidence theory, ensemble learning, uncertainty quantification, image classification, CIFAR-10, deep learning
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Related Work}
+\label{sec:related}
+\input{sections/related_work}
+
+\section{Methodology}
+\label{sec:methodology}
+\input{sections/methodology}
+
+\section{Experimental Setup}
+\label{sec:experiments}
+\input{sections/experiments}
+
+\section{Results and Analysis}
+\label{sec:results}
+\input{sections/results}
+
+\section{Discussion}
+\label{sec:discussion}
+\input{sections/discussion}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

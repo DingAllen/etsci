@@ -1,0 +1,151 @@
+\begin{thebibliography}{10}
+
+\bibitem{arxiv2024feature}
+Anonymous.
+\newblock Feature fusion for improved classification: Combining dempster-shafer
+  theory with ensemble cnns.
+\newblock {\em arXiv preprint arXiv:2405.20230}, 2024.
+
+\bibitem{basir2007engine}
+Otman Basir and Xiaohui Yuan.
+\newblock Engine fault diagnosis based on multi-sensor information fusion using
+  dempster--shafer evidence theory.
+\newblock {\em Information fusion}, 8(4):379--386, 2007.
+
+\bibitem{breiman1996bagging}
+Leo Breiman.
+\newblock Bagging predictors.
+\newblock {\em Machine learning}, 24(2):123--140, 1996.
+
+\bibitem{dempster1968generalization}
+Arthur~P Dempster.
+\newblock A generalization of bayesian inference.
+\newblock {\em Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 30(2):205--232, 1968.
+
+\bibitem{dietterich2000ensemble}
+Thomas~G Dietterich.
+\newblock Ensemble methods in machine learning.
+\newblock {\em Multiple classifier systems}, pages 1--15, 2000.
+
+\bibitem{freund1997decision}
+Yoav Freund and Robert~E Schapire.
+\newblock A decision-theoretic generalization of on-line learning and an
+  application to boosting.
+\newblock In {\em Journal of computer and system sciences}, volume~55, pages
+  119--139, 1997.
+
+\bibitem{gal2016dropout}
+Yarin Gal and Zoubin Ghahramani.
+\newblock Dropout as a bayesian approximation: Representing model uncertainty
+  in deep learning.
+\newblock In {\em International conference on machine learning}, pages
+  1050--1059, 2016.
+
+\bibitem{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q Weinberger.
+\newblock On calibration of modern neural networks.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1321--1330, 2017.
+
+\bibitem{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 770--778, 2016.
+
+\bibitem{huang2017densely}
+Gao Huang, Zhuang Liu, Laurens Van Der~Maaten, and Kilian~Q Weinberger.
+\newblock Densely connected convolutional networks.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 4700--4708, 2017.
+
+\bibitem{kendall2017uncertainties}
+Alex Kendall and Yarin Gal.
+\newblock What uncertainties do we need in bayesian deep learning for computer
+  vision?
+\newblock In {\em Advances in neural information processing systems}, pages
+  5574--5584, 2017.
+
+\bibitem{kiani2017medical}
+Morteza Kiani et~al.
+\newblock Medical diagnosis using dempster-shafer theory.
+\newblock {\em Expert Systems with Applications}, 70:40--46, 2017.
+
+\bibitem{krizhevsky2009learning}
+Alex Krizhevsky and Geoffrey Hinton.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, University of Toronto, 2009.
+
+\bibitem{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105, 2012.
+
+\bibitem{lakshminarayanan2017simple}
+Balaji Lakshminarayanan, Alexander Pritzel, and Charles Blundell.
+\newblock Simple and scalable predictive uncertainty estimation using deep
+  ensembles.
+\newblock In {\em Advances in neural information processing systems}, pages
+  6402--6413, 2017.
+
+\bibitem{le2002application}
+Sylvie Le~Hegarat-Mascle, Isabelle Bloch, and Danielle Vidal-Madjar.
+\newblock Application of dempster-shafer theory in combining classifiers for
+  multisource remote sensing classification.
+\newblock {\em IEEE Transactions on Geoscience and Remote Sensing},
+  40(10):2385--2395, 2002.
+
+\bibitem{liu2024deep}
+Ling Liu et~al.
+\newblock Deep evidential fusion with uncertainty quantification and
+  reliability assessment for multimodal medical image segmentation.
+\newblock {\em Information Fusion}, 104:102205, 2024.
+
+\bibitem{mackay1992practical}
+David~JC MacKay.
+\newblock A practical bayesian framework for backpropagation networks.
+\newblock {\em Neural computation}, 4(3):448--472, 1992.
+
+\bibitem{sandler2018mobilenetv2}
+Mark Sandler, Andrew Howard, Menglong Zhu, Andrey Zhmoginov, and Liang-Chieh
+  Chen.
+\newblock Mobilenetv2: Inverted residuals and linear bottlenecks.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 4510--4520, 2018.
+
+\bibitem{sensoy2018evidential}
+Murat Sensoy, Lance Kaplan, and Melih Kandemir.
+\newblock Evidential deep learning to quantify classification uncertainty.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  3179--3189, 2018.
+
+\bibitem{shafer1976mathematical}
+Glenn Shafer.
+\newblock A mathematical theory of evidence.
+\newblock {\em Princeton university press}, 1976.
+
+\bibitem{simonyan2014very}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
+
+\bibitem{smets1994transferable}
+Philippe Smets and Robert Kennes.
+\newblock The transferable belief model.
+\newblock {\em Artificial intelligence}, 66(2):191--234, 1994.
+
+\bibitem{wolpert1992stacked}
+David~H Wolpert.
+\newblock Stacked generalization.
+\newblock {\em Neural networks}, 5(2):241--259, 1992.
+
+\bibitem{xu1992methods}
+Lei Xu, Adam Krzyzak, and Ching~Y Suen.
+\newblock Methods of combining multiple classifiers and their applications to
+  handwriting recognition.
+\newblock {\em IEEE transactions on systems, man, and cybernetics},
+  22(3):418--435, 1992.
+
+\end{thebibliography}

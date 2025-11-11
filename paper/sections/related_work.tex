@@ -1,0 +1,58 @@
+\subsection{Ensemble Learning}
+
+Ensemble learning combines multiple models to achieve better performance than individual models~\cite{dietterich2000ensemble}. Common ensemble techniques include bagging~\cite{breiman1996bagging}, boosting~\cite{freund1997decision}, and stacking~\cite{wolpert1992stacked}. In deep learning, ensemble methods have been shown to improve accuracy and calibration~\cite{lakshminarayanan2017simple}.
+
+Traditional fusion strategies include:
+\begin{itemize}
+\item \textbf{Voting}: Each model votes for a class, and the majority wins.
+\item \textbf{Averaging}: Predicted probabilities are averaged across models.
+\item \textbf{Weighted Averaging}: Models are assigned different weights based on validation performance.
+\end{itemize}
+
+While effective, these methods do not explicitly model uncertainty or handle conflicting predictions in a principled manner.
+
+\subsection{Uncertainty Quantification in Deep Learning}
+
+Uncertainty quantification has gained increasing attention in deep learning~\cite{gal2016dropout, kendall2017uncertainties}. Approaches include:
+
+\begin{itemize}
+\item \textbf{Bayesian Neural Networks}: Model parameter uncertainty through distributions~\cite{mackay1992practical}.
+\item \textbf{Monte Carlo Dropout}: Approximate Bayesian inference by applying dropout at test time~\cite{gal2016dropout}.
+\item \textbf{Deep Ensembles}: Use multiple models trained with different initializations~\cite{lakshminarayanan2017simple}.
+\item \textbf{Evidential Deep Learning}: Parameterize higher-order distributions~\cite{sensoy2018evidential}.
+\end{itemize}
+
+However, these methods often focus on aleatoric or epistemic uncertainty separately and may not provide interpretable conflict measures.
+
+\subsection{Dempster-Shafer Theory}
+
+Dempster-Shafer (DS) theory~\cite{shafer1976mathematical, dempster1968generalization} extends probability theory by allowing explicit representation of ignorance and uncertainty. Key concepts include:
+
+\begin{itemize}
+\item \textbf{Frame of Discernment} $\Theta$: The set of all possible hypotheses.
+\item \textbf{Mass Function} $m$: Assigns belief mass to subsets of $\Theta$, with $\sum_{A \subseteq \Theta} m(A) = 1$.
+\item \textbf{Belief} $Bel(A)$: Lower bound of probability, $Bel(A) = \sum_{B \subseteq A} m(B)$.
+\item \textbf{Plausibility} $Pl(A)$: Upper bound of probability, $Pl(A) = \sum_{B \cap A \neq \emptyset} m(B)$.
+\item \textbf{Dempster's Rule}: Combines mass functions from independent sources.
+\end{itemize}
+
+\subsection{DS Theory in Machine Learning}
+
+DS theory has been applied to various machine learning tasks:
+
+\begin{itemize}
+\item \textbf{Classification}: Combining classifier outputs~\cite{xu1992methods}.
+\item \textbf{Sensor Fusion}: Integrating multi-sensor data~\cite{basir2007engine}.
+\item \textbf{Medical Diagnosis}: Fusing evidence from multiple diagnostic tests~\cite{kiani2017medical}.
+\item \textbf{Remote Sensing}: Land cover classification~\cite{le2002application}.
+\end{itemize}
+
+Recent work has begun exploring DS theory for deep learning:
+
+\textbf{Feature Fusion for CNNs}: A recent study~\cite{arxiv2024feature} combined DS theory with pre-trained CNN architectures for CIFAR-10/100, showing improved performance. However, their approach focuses primarily on feature-level fusion rather than uncertainty quantification.
+
+\textbf{Evidential Deep Learning}: Work by Sensoy et al.~\cite{sensoy2018evidential} parameterizes the Dirichlet distribution to capture uncertainty, but does not explicitly use DS combination rules.
+
+\textbf{Medical Imaging}: Deep evidential fusion has been applied to multimodal medical image segmentation~\cite{liu2024deep}, demonstrating uncertainty quantification benefits.
+
+Our work differs by: (1) focusing on model-level fusion with explicit conflict detection, (2) providing multiple belief assignment strategies with temperature scaling, (3) conducting comprehensive analysis of conflict-error correlation, and (4) demonstrating applicability to standard computer vision benchmarks with diverse CNN architectures.
