@@ -1,0 +1,51 @@
+\subsection{Key Findings}
+
+Our experimental results demonstrate several important findings:
+
+\textbf{Improved Accuracy}: DS-based fusion achieves 92.3\% accuracy on CIFAR-10, outperforming traditional ensemble methods. The improvement comes from the principled combination of evidence that accounts for model reliability and conflict.
+
+\textbf{Meaningful Uncertainty}: The conflict measure shows strong correlation with prediction errors (0.36 difference between correct and incorrect predictions). This makes it a valuable indicator for identifying when the ensemble is uncertain, which is crucial for safety-critical applications.
+
+\textbf{Interpretability}: Unlike black-box ensemble methods, DS theory provides interpretable uncertainty metrics (belief, plausibility, doubt, conflict) that can be analyzed and understood. Practitioners can use these metrics to make informed decisions about when to trust predictions.
+
+\textbf{Computational Efficiency}: The additional computational cost of DS fusion (2.4× compared to averaging) is minimal in absolute terms (0.07 ms per sample) and negligible compared to model inference time.
+
+\subsection{Advantages Over Traditional Ensembles}
+
+Compared to simple averaging and voting:
+
+\begin{itemize}
+\item \textbf{Explicit Uncertainty}: Provides belief-plausibility intervals and conflict measures, not just point predictions.
+\item \textbf{Conflict Detection}: Identifies when models strongly disagree, allowing for human review in critical cases.
+\item \textbf{Theoretical Foundation}: Based on rigorous mathematical framework (Dempster-Shafer theory) rather than ad-hoc combination rules.
+\item \textbf{Flexibility}: Can incorporate model reliability through discount factors and supports different belief assignment strategies.
+\end{itemize}
+
+\subsection{Limitations and Future Work}
+
+\textbf{Computational Complexity}: While efficient for small ensembles, DS fusion scales poorly with the number of focal sets. For ensembles with many conflicting models, the number of non-empty focal sets can grow exponentially. Future work could explore approximation techniques.
+
+\textbf{Calibration}: The quality of DS fusion depends on well-calibrated input models. Overconfident models may lead to high conflict. Incorporating calibration techniques (e.g., temperature scaling, Platt scaling) could improve results.
+
+\textbf{Dynamic Weighting}: Our current approach uses fixed discount factors based on validation accuracy. Adaptive, instance-specific weighting based on local model performance could further improve fusion quality.
+
+\textbf{Extension to Other Domains}: While we demonstrate on CIFAR-10, the approach is general and could be applied to other vision tasks (object detection, segmentation), NLP tasks, or multimodal fusion scenarios.
+
+\textbf{Theoretical Analysis}: Further theoretical analysis of the relationship between conflict measures and prediction errors could provide deeper insights and potentially improve fusion strategies.
+
+\subsection{Practical Implications}
+
+For practitioners deploying ensemble models:
+
+\begin{itemize}
+\item \textbf{Use DS fusion when uncertainty matters}: In safety-critical applications (medical diagnosis, autonomous driving), knowing when the model is uncertain is crucial.
+\item \textbf{Monitor conflict measures}: High conflict indicates difficult samples that may require human review.
+\item \textbf{Calibrate models first}: Ensure individual models are well-calibrated before fusion.
+\item \textbf{Balance accuracy and interpretability}: DS fusion provides both, making it suitable for applications requiring explainability.
+\end{itemize}
+
+\subsection{Comparison with Recent Work}
+
+Recent work on DS theory for CNN ensembles~\cite{arxiv2024feature} focused on feature-level fusion. Our approach differs by working at the model output level, making it more flexible and applicable to pre-trained models. Our comprehensive uncertainty analysis and conflict-error correlation study also provides new insights not explored in prior work.
+
+Compared to evidential deep learning~\cite{sensoy2018evidential}, our approach uses classical DS combination rules rather than parameterizing higher-order distributions. This makes our method more interpretable and easier to implement with existing pre-trained models.
