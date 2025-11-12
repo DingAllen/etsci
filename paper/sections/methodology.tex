@@ -1,6 +1,6 @@
 \subsection{Framework Overview}
 
-Our DS-based ensemble framework transforms the conventional ensemble learning pipeline into a principled evidence combination system. As illustrated in Figure~\ref{fig:framework}, the framework consists of three interconnected stages:
+Our DS-based ensemble framework transforms conventional ensemble learning into a principled evidence combination system. As illustrated in Figure~\ref{fig:framework}, the framework consists of three interconnected stages:
 
 \begin{enumerate}
 \item \textbf{Belief Assignment}: Converting softmax outputs from individual CNNs into DS mass functions
@@ -15,104 +15,146 @@ Our DS-based ensemble framework transforms the conventional ensemble learning pi
 \label{fig:framework}
 \end{figure*}
 
-Each component is designed to preserve the strengths of deep learning (representation power and accuracy) while adding the benefits of DS theory (uncertainty quantification and conflict detection). The framework is model-agnostic and can incorporate any neural network architecture that produces probabilistic outputs.
+Each component preserves deep learning's representational power while adding DS theory's uncertainty quantification capabilities. The framework is model-agnostic, working with any architecture producing probabilistic outputs.
 
-\subsection{Belief Assignment from Neural Networks}
+\subsection{From Softmax Probabilities to Basic Belief Assignments}
 
-Given a neural network classifier that outputs softmax probabilities $\mathbf{p} = [p_1, p_2, \ldots, p_K]$ for $K$ classes, we convert these to a DS mass function $m: 2^\Theta \rightarrow [0,1]$, where $\Theta = \{c_1, c_2, \ldots, c_K\}$ is the frame of discernment (set of all classes).
+\textbf{The Conversion Challenge:} A critical question is how to transform CNN softmax outputs $\mathbf{p} = [p_1, p_2, \ldots, p_K]$ into DS basic belief assignments (BBAs). This conversion must preserve probabilistic information while enabling DS theory's uncertainty framework.
 
-We propose three assignment strategies:
+\textbf{Theoretical Justification:} In DS theory, a mass function $m: 2^\Theta \rightarrow [0,1]$ assigns belief to subsets of the frame of discernment $\Theta = \{c_1, \ldots, c_K\}$. For classification, we focus on singleton sets $\{c_i\}$ representing individual classes. The key insight is that softmax outputs already represent a form of evidence—model confidence in each class based on learned features. Our conversion interprets this confidence as belief mass.
 
-\textbf{Direct Assignment}: The simplest approach directly maps probabilities to mass:
+Unlike Evidential Deep Learning~\cite{sensoy2018evidential}, which modifies network architecture to output Dirichlet distribution parameters, we work with standard softmax outputs. This design choice offers three advantages: (1) compatibility with pre-trained models, (2) no architecture modification required, and (3) applicability to black-box models.
+
+\textbf{Conversion Strategies:} We propose three assignment strategies, each with different properties:
+
+\textbf{1. Direct Assignment} (Distribution-Preserving):
 \begin{equation}
 m(\{c_i\}) = p_i, \quad \forall i \in \{1, \ldots, K\}
+\label{eq:direct}
 \end{equation}
 
-\textbf{Temperature-Scaled Assignment}: To adjust confidence levels, we apply temperature scaling:
-\begin{equation}
-m(\{c_i\}) = \frac{\exp(\log p_i / T)}{\sum_{j=1}^K \exp(\log p_j / T)}
-\end{equation}
-where $T$ is the temperature parameter. $T < 1$ makes the distribution sharper (more confident), while $T > 1$ makes it smoother (less confident).
-
-\textbf{Calibrated Assignment}: Based on model calibration, we adjust the assignment to account for overconfidence:
-\begin{equation}
-m(\{c_i\}) = \sqrt{p_i} / \sum_{j=1}^K \sqrt{p_j}
-\end{equation}
-
-In all cases, any remaining mass (due to normalization or deliberate discount) is assigned to the frame of discernment $\Theta$:
+This preserves the original probability distribution. For well-calibrated networks, direct assignment provides faithful evidence transfer. The remaining mass:
 \begin{equation}
 m(\Theta) = 1 - \sum_{i=1}^K m(\{c_i\})
 \end{equation}
-representing ignorance or lack of evidence.
+represents epistemic uncertainty—lack of evidence in the model.
+
+\textbf{2. Temperature-Scaled Assignment} (Calibration-Adjusted):
+\begin{equation}
+m(\{c_i\}) = \frac{\exp(\log p_i / T)}{\sum_{j=1}^K \exp(\log p_j / T)}
+\label{eq:temperature}
+\end{equation}
+
+Temperature scaling~\cite{guo2017calibration} adjusts confidence levels. For $T > 1$, the distribution smooths (reducing overconfidence); for $T < 1$, it sharpens. This addresses the common issue of overconfident neural networks, ensuring mass assignments reflect true prediction confidence.
+
+\textbf{3. Calibrated Assignment} (Variance-Reducing):
+\begin{equation}
+m(\{c_i\}) = \frac{\sqrt{p_i}}{\sum_{j=1}^K \sqrt{p_j}}
+\label{eq:calibrated}
+\end{equation}
+
+The square-root transformation reduces variance in probability estimates, useful for models with high confidence variation. This strategy provides a middle ground between direct and temperature-scaled approaches.
+
+\textbf{Properties and Selection:} Our ablation studies (Section~\ref{sec:results}) show that for well-calibrated models (ResNet, DenseNet trained with standard procedures), direct assignment achieves optimal performance. Temperature scaling benefits overconfident models, while calibrated assignment helps when confidence varies significantly across predictions.
 
 \subsection{Dempster's Rule of Combination}
 
-Given mass functions $m_1$ and $m_2$ from two independent sources, Dempster's rule combines them:
+Given mass functions $m_1$ and $m_2$ from independent sources (models), Dempster's rule combines them:
 \begin{equation}
 m_{1 \oplus 2}(A) = \frac{1}{1-\kappa} \sum_{B \cap C = A} m_1(B) m_2(C)
+\label{eq:dempster}
 \end{equation}
-where $\kappa$ is the conflict mass:
+
+The conflict mass $\kappa$ measures disagreement:
 \begin{equation}
 \kappa = \sum_{B \cap C = \emptyset} m_1(B) m_2(C)
+\label{eq:conflict}
 \end{equation}
 
-The conflict $\kappa \in [0,1]$ measures disagreement between sources. High conflict indicates contradictory evidence.
+\textbf{Conflict Interpretation and Handling:} The conflict coefficient $\kappa \in [0,1]$ is not merely a normalization factor—it provides crucial information about model agreement. High conflict ($\kappa > 0.7$) indicates models fundamentally disagree, signaling:
+\begin{itemize}
+\item Ambiguous or difficult samples
+\item Potential out-of-distribution inputs
+\item Dataset boundary cases requiring careful handling
+\end{itemize}
 
-For multiple sources $m_1, m_2, \ldots, m_N$, we apply the rule sequentially:
+\textbf{Adaptive Conflict Management:} Based on conflict levels, we implement three handling strategies:
+
+\begin{algorithm}[h]
+\caption{Conflict-Aware Decision Policy}
+\begin{algorithmic}[1]
+\IF{$\kappa < 0.5$}
+    \STATE \textbf{Low Conflict:} Use fused mass for prediction (models agree)
+\ELSIF{$0.5 \leq \kappa < 0.7$}
+    \STATE \textbf{Moderate Conflict:} Report wider uncertainty intervals
+\ELSE
+    \STATE \textbf{High Conflict:} Flag for human review or rejection
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+This adaptive policy enables deployment in safety-critical settings where uncertain predictions should be handled differently than confident ones.
+
+For $N$ models, we apply Dempster's rule sequentially:
 \begin{equation}
 m_{combined} = m_1 \oplus m_2 \oplus \cdots \oplus m_N
 \end{equation}
 
-\subsection{Uncertainty Metrics}
+Recording conflict at each stage $\kappa_i$ provides a conflict profile showing where disagreements emerge.
 
-For a hypothesis $A \subseteq \Theta$, we compute:
+\subsection{Uncertainty Quantification: Epistemic vs. Aleatoric}
 
-\textbf{Belief}: Lower probability bound
+DS theory naturally captures \textit{epistemic uncertainty} (model disagreement) distinct from \textit{aleatoric uncertainty} (inherent data noise). For hypothesis $A \subseteq \Theta$:
+
+\textbf{Belief} (Lower probability bound):
 \begin{equation}
 Bel(A) = \sum_{B \subseteq A} m(B)
 \end{equation}
 
-\textbf{Plausibility}: Upper probability bound
+\textbf{Plausibility} (Upper probability bound):
 \begin{equation}
 Pl(A) = \sum_{B \cap A \neq \emptyset} m(B)
 \end{equation}
 
-\textbf{Doubt}: Complement of plausibility
+\textbf{Doubt} (Complement of plausibility):
 \begin{equation}
-Doubt(A) = 1 - Pl(A)
+Doubt(A) = 1 - Pl(A) = Bel(\neg A)
 \end{equation}
 
-\textbf{Uncertainty Interval}: The interval $[Bel(A), Pl(A)]$ captures prediction uncertainty. A wider interval indicates higher uncertainty.
+The interval $[Bel(A), Pl(A)]$ captures epistemic uncertainty. Wide intervals indicate high model disagreement; narrow intervals suggest consensus. This differs from aleatoric uncertainty (data noise) which DS theory does not directly model—our focus is on uncertainty arising from ensemble disagreement.
 
-\subsection{Decision Making}
+\subsection{Decision Making and Uncertainty Reporting}
 
-To make a final prediction, we use the pignistic transformation~\cite{smets1994transferable}, which converts mass to probability:
+We use the pignistic transformation~\cite{smets1994transferable} to convert mass to probability:
 \begin{equation}
 P(c_i) = \sum_{A: c_i \in A} \frac{m(A)}{|A|}
 \end{equation}
 
-The predicted class is:
+Final prediction:
 \begin{equation}
 \hat{y} = \arg\max_{c_i} P(c_i)
 \end{equation}
 
-Alternatively, we can use:
+For each prediction, we report:
 \begin{itemize}
-\item \textbf{Maximum Belief}: $\arg\max_{c_i} Bel(\{c_i\})$ (conservative)
-\item \textbf{Maximum Plausibility}: $\arg\max_{c_i} Pl(\{c_i\})$ (optimistic)
+\item \textbf{Predicted class} $\hat{y}$ with pignistic probability $P(\hat{y})$
+\item \textbf{Uncertainty interval} $[Bel(\{\hat{y}\}), Pl(\{\hat{y}\})]$
+\item \textbf{Conflict measure} $\kappa$ averaged over fusion steps
+\item \textbf{Interval width} $Pl(\{\hat{y}\}) - Bel(\{\hat{y}\})$ as uncertainty score
 \end{itemize}
 
-\subsection{Adaptive Weighting}
+This comprehensive uncertainty profile enables nuanced decision policies unavailable to traditional ensembles.
 
-For models with different reliabilities, we apply discount factors $\alpha_i \in [0,1]$ before fusion:
+\subsection{Reliability-Based Weighting}
+
+For models with varying quality, we apply discount factors $\alpha_i \in [0,1]$ before fusion:
 \begin{equation}
 m_i'(A) = (1 - \alpha_i) m_i(A), \quad m_i'(\Theta) = m_i(\Theta) + \alpha_i (1 - m_i(\Theta))
 \end{equation}
-where $\alpha_i$ represents the unreliability of model $i$.
 
-We can estimate $\alpha_i$ from validation performance:
+where $\alpha_i$ represents model $i$'s unreliability. We estimate:
 \begin{equation}
-\alpha_i = 1 - \text{Accuracy}_i
+\alpha_i = 1 - \text{Accuracy}_i^{val}
 \end{equation}
 
-This ensures that less reliable models contribute less mass to specific hypotheses and more to the ignorance set $\Theta$.
+Less reliable models contribute more mass to ignorance $\Theta$, preventing poor predictions from dominating the ensemble. This adaptive weighting naturally emerges from DS theory's discounting mechanism.
