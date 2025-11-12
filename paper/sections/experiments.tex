@@ -1,74 +1,67 @@
-\subsection{Dataset}
+\subsection{Dataset and Training}
 
-We evaluate our approach on CIFAR-10~\cite{krizhevsky2009learning}, a widely-used benchmark for image classification. CIFAR-10 consists of 60,000 32×32 color images in 10 classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck), with 50,000 training images and 10,000 test images. We split the training set into 45,000 for training and 5,000 for validation.
+We evaluate on CIFAR-10~\cite{krizhevsky2009learning}, a widely-used benchmark containing 60,000 32×32 color images across 10 classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck). We split the 50,000 training images into 45,000 for training and 5,000 for validation, reserving 10,000 for testing.
 
-\subsection{Model Architectures}
+\textbf{Model Architectures:} We train five diverse CNN architectures for heterogeneous ensembles: ResNet-18 and ResNet-34~\cite{he2016deep} (residual networks with varying depth), VGG-16~\cite{simonyan2014very} (classic deep architecture), MobileNetV2~\cite{sandler2018mobilenetv2} (efficient design), and DenseNet-121~\cite{huang2017densely} (dense connections). We use ImageNet pre-trained weights and fine-tune on CIFAR-10 for 10 epochs (learning rate 0.001, batch size 64, Adam optimizer).
 
-We train five diverse CNN architectures to create heterogeneous ensembles:
+\subsection{Baseline Comparisons}
 
+We compare against multiple baselines:
+
+\textbf{Individual Models:} Each CNN's standalone performance establishes lower bounds.
+
+\textbf{Traditional Ensembles:}
 \begin{itemize}
-\item \textbf{ResNet-18, ResNet-34}~\cite{he2016deep}: Residual networks with different depths
-\item \textbf{VGG-16}~\cite{simonyan2014very}: Classic deep architecture with small filters
-\item \textbf{MobileNet-V2}~\cite{sandler2018mobilenetv2}: Efficient architecture for mobile devices
-\item \textbf{DenseNet-121}~\cite{huang2017densely}: Dense connections between layers
-\end{itemize}
-
-We use pre-trained weights from ImageNet and fine-tune on CIFAR-10 for 10 epochs with learning rate 0.001, batch size 64, and Adam optimizer. This transfer learning approach reduces training time while maintaining good performance.
-
-\subsection{Baseline Methods}
-
-We compare our DS-based fusion against:
-
-\begin{itemize}
-\item \textbf{Individual Models}: Each model's standalone performance
-\item \textbf{Simple Averaging}: Average softmax probabilities across models
-\item \textbf{Voting}: Majority vote of model predictions
+\item \textbf{Simple Averaging}: Average softmax probabilities
+\item \textbf{Voting}: Majority vote across models
 \item \textbf{Weighted Averaging}: Weight models by validation accuracy
 \end{itemize}
 
+\textbf{Uncertainty-Aware Methods:}
+\begin{itemize}
+\item \textbf{MC Dropout}~\cite{gal2016dropout}: Approximate Bayesian inference via dropout sampling (20 forward passes)
+\item \textbf{Deep Ensembles}~\cite{lakshminarayanan2017simple}: Ensemble of independently trained networks
+\end{itemize}
+
+This comprehensive comparison validates DS fusion against both traditional and modern uncertainty quantification methods.
+
 \subsection{Evaluation Metrics}
 
-\textbf{Classification Accuracy}: Percentage of correct predictions on test set.
-
-\textbf{Expected Calibration Error (ECE)}~\cite{guo2017calibration}: Measures calibration quality:
-\begin{equation}
-ECE = \sum_{m=1}^M \frac{|B_m|}{n} |\text{acc}(B_m) - \text{conf}(B_m)|
-\end{equation}
-where $B_m$ are confidence bins, $n$ is the number of samples, acc is accuracy, and conf is average confidence.
-
-\textbf{Uncertainty Quality Metrics}:
+\textbf{In-Distribution Performance:}
 \begin{itemize}
-\item Average belief, plausibility, and interval width
-\item Correlation between uncertainty and prediction errors
-\item Conflict measure distribution and its correlation with correctness
+\item \textbf{Classification Accuracy}: Percentage of correct predictions
+\item \textbf{Expected Calibration Error (ECE)}~\cite{guo2017calibration}: Measures probability calibration
+\item \textbf{Uncertainty-Error Correlation}: Correlation between uncertainty scores and prediction correctness
+\end{itemize}
+
+\textbf{Out-of-Distribution (OOD) Detection:} Following best practices for uncertainty evaluation~\cite{hendrycks2016baseline}, we test OOD detection capability:
+\begin{itemize}
+\item \textbf{OOD Dataset}: SVHN (Street View House Numbers) as distribution shift
+\item \textbf{AUROC}: Area under ROC curve for separating in-dist from OOD
+\item \textbf{FPR@95}: False positive rate at 95\% true positive rate
+\item \textbf{Uncertainty Distribution}: Compare in-dist vs OOD uncertainty
+\end{itemize}
+
+\textbf{Adversarial Robustness:} We evaluate uncertainty under adversarial attacks:
+\begin{itemize}
+\item \textbf{FGSM Attack}~\cite{goodfellow2014explaining}: Fast Gradient Sign Method with $\epsilon = 0.03$
+\item \textbf{Uncertainty Increase}: Measure conflict and interval width on adversarial examples
+\item \textbf{Accuracy Degradation}: Compare clean vs adversarial accuracy
 \end{itemize}
 
 \subsection{Implementation Details}
 
-We implement our framework in PyTorch. All experiments use:
-\begin{itemize}
-\item Random seed: 42 (for reproducibility)
-\item Data augmentation: Random crop, horizontal flip
-\item Normalization: Channel-wise mean and std from CIFAR-10
-\item Hardware: CPU (models are lightweight enough)
-\end{itemize}
-
-For DS fusion, we test:
-\begin{itemize}
-\item \textbf{Direct assignment} with no temperature scaling
-\item \textbf{Temperature-scaled} with $T = 1.5$ (smoother distributions)
-\item \textbf{Calibrated assignment} using square-root normalization
-\end{itemize}
+All experiments use PyTorch with random seed 42 for reproducibility. Data augmentation includes random crop and horizontal flip. We normalize using CIFAR-10 statistics. For DS fusion, we test three belief assignment strategies: direct (no scaling), temperature-scaled ($T \in \{0.5, 1.0, 1.5, 2.0\}$), and calibrated (square-root normalization).
 
 \subsection{Ablation Studies}
 
-We conduct ablation studies to analyze:
-
+We systematically analyze:
 \begin{enumerate}
-\item \textbf{Effect of ensemble size}: Performance with 2, 3, 4, and 5 models
-\item \textbf{Belief assignment strategy}: Comparing direct, temperature-scaled, and calibrated
-\item \textbf{Temperature parameter}: Testing $T \in \{0.5, 1.0, 1.5, 2.0\}$
-\item \textbf{Model diversity}: Impact of using similar vs. diverse architectures
+\item \textbf{Ensemble Size}: Performance with 1-6 models
+\item \textbf{Assignment Strategy}: Direct, temperature-scaled, calibrated
+\item \textbf{Temperature Parameter}: Optimal $T$ for different model types
+\item \textbf{Model Diversity}: Homogeneous (same architecture) vs heterogeneous
+\item \textbf{Conflict Thresholds}: Effect of adaptive handling policies
 \end{enumerate}
 
-All experiments are repeated with 3 random seeds to ensure statistical significance. We report mean and standard deviation where applicable.
+All experiments report mean ± standard deviation across 3 random seeds.

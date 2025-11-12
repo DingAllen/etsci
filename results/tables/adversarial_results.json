@@ -1,0 +1,12 @@
+{
+  "fgsm": {
+    "clean_accuracy": 0.92,
+    "adv_accuracy": 0.65,
+    "clean_conflict": 0.18894204299454334,
+    "adv_conflict": 0.3633256945161847,
+    "conflict_increase": 0.17438365152164134,
+    "clean_interval": 0.06009877468107151,
+    "adv_interval": 0.1791571233204163,
+    "interval_increase": 0.1190583486393448
+  }
+}

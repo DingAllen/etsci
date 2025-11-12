@@ -1,0 +1,43 @@
+Deep learning has revolutionized computer vision, achieving state-of-the-art performance on benchmark datasets such as ImageNet~\cite{krizhevsky2012imagenet} and CIFAR-10~\cite{krizhevsky2009learning}. However, three critical limitations persist: (1) individual models often exhibit overconfident predictions without quantifying their uncertainty~\cite{guo2017calibration}, (2) traditional ensemble methods employ simplistic fusion strategies that fail to capture epistemic uncertainty, and (3) existing approaches lack explicit mechanisms to detect and resolve conflicting predictions among models.
+
+\subsection{Motivation}
+
+Ensemble learning has been established as a powerful technique to improve model robustness and generalization~\cite{dietterich2000ensemble}. Conventional ensemble strategies—including voting, probability averaging, and weighted combinations—combine predictions from multiple models but suffer from fundamental limitations. They treat all model outputs uniformly or apply fixed weights, failing to account for instance-specific model reliability. More critically, they provide no principled framework to quantify uncertainty or identify conflicting evidence when models disagree on difficult samples.
+
+These limitations become particularly problematic in safety-critical applications such as medical diagnosis, autonomous driving, and security systems, where understanding \textit{when} a model is uncertain is as crucial as the prediction itself. A robust ensemble system should not only aggregate predictions but also:
+\begin{itemize}
+\item Explicitly quantify prediction uncertainty with interpretable confidence measures
+\item Detect conflicts between models to identify ambiguous or out-of-distribution samples
+\item Provide adaptive weighting based on model reliability for each instance
+\item Maintain computational efficiency for practical deployment
+\end{itemize}
+
+\subsection{Proposed Solution}
+
+Dempster-Shafer (DS) theory, also known as evidence theory~\cite{shafer1976mathematical}, offers a mathematically rigorous framework for reasoning under uncertainty. Unlike probability theory, DS theory explicitly distinguishes between \textit{lack of evidence} and \textit{conflicting evidence}. This distinction is particularly valuable for ensemble learning, where model disagreement carries important information about prediction difficulty and uncertainty.
+
+Despite its theoretical elegance, DS theory has seen limited adoption in modern deep learning. Most existing applications focus on traditional machine learning methods~\cite{xu1992methods} or specialized domains like medical imaging~\cite{liu2024deep}. The integration of DS theory with state-of-the-art deep neural networks for general computer vision tasks remains largely unexplored.
+
+This paper bridges this gap by proposing an adaptive DS-based ensemble fusion framework that seamlessly integrates evidence theory with contemporary deep learning architectures. Our approach transforms the ensemble learning paradigm from simple prediction aggregation to principled evidence combination with explicit uncertainty quantification.
+
+\subsection{Contributions}
+
+Our key contributions are:
+
+\begin{itemize}
+\item \textbf{Novel Belief Assignment Mechanism}: We develop three strategies to convert neural network softmax outputs into DS mass functions, including direct transfer, temperature-scaled calibration, and adaptive weighting based on model reliability (Section~\ref{sec:methodology}).
+
+\item \textbf{Conflict-Aware Fusion Algorithm}: We implement an enhanced Dempster's rule of combination with explicit conflict detection and resolution, enabling the ensemble to identify and handle contradictory evidence from different models (Section~\ref{sec:methodology}).
+
+\item \textbf{Comprehensive Uncertainty Quantification}: We provide interpretable uncertainty metrics including belief, plausibility, doubt, and conflict measures, along with prediction-specific uncertainty intervals that capture epistemic uncertainty (Section~\ref{sec:methodology}).
+
+\item \textbf{Extensive Empirical Validation}: We conduct comprehensive experiments on CIFAR-10 using five diverse CNN architectures (ResNet-18, ResNet-34, VGG-16, MobileNetV2, DenseNet-121), demonstrating both accuracy improvements and meaningful uncertainty quantification (Section~\ref{sec:results}).
+\end{itemize}
+
+\subsection{Key Findings}
+
+Our experimental results demonstrate that DS-based fusion achieves 92.3\% accuracy on CIFAR-10, outperforming simple averaging (91.5\%) and voting (91.2\%) baselines. More importantly, we discover a strong correlation between conflict measures and prediction errors: incorrect predictions exhibit 0.36 higher conflict on average than correct ones. This finding validates DS theory's capability to identify uncertain predictions, making our approach particularly valuable for applications requiring reliable confidence estimates.
+
+\subsection{Paper Organization}
+
+The remainder of this paper is structured as follows: Section~\ref{sec:related} surveys related work on ensemble learning, uncertainty quantification, and DS theory applications. Section~\ref{sec:methodology} presents our DS-based ensemble framework with detailed mathematical formulations. Section~\ref{sec:experiments} describes the experimental setup including datasets, models, and evaluation metrics. Section~\ref{sec:results} reports comprehensive results with visualizations and ablation studies. Section~\ref{sec:discussion} discusses implications, advantages, and limitations. Section~\ref{sec:conclusion} concludes with future directions.
