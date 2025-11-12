@@ -1,6 +1,21 @@
-\subsection{Overview}
+\subsection{Framework Overview}
 
-Our DS-based ensemble framework consists of three main components: (1) belief assignment from neural network outputs, (2) evidence fusion using Dempster's rule, and (3) decision making with uncertainty quantification. Figure~\ref{fig:framework} illustrates the overall architecture.
+Our DS-based ensemble framework transforms the conventional ensemble learning pipeline into a principled evidence combination system. As illustrated in Figure~\ref{fig:framework}, the framework consists of three interconnected stages:
+
+\begin{enumerate}
+\item \textbf{Belief Assignment}: Converting softmax outputs from individual CNNs into DS mass functions
+\item \textbf{Evidence Fusion}: Combining mass functions using Dempster's rule with conflict detection
+\item \textbf{Decision Making}: Generating final predictions with comprehensive uncertainty metrics
+\end{enumerate}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{../results/figures/framework_diagram.png}
+\caption{Overview of our DS-based ensemble fusion framework. Individual CNN models generate softmax predictions, which are converted to belief mass functions. These masses are combined using Dempster's rule to produce a fused prediction with explicit uncertainty quantification including belief, plausibility, and conflict measures.}
+\label{fig:framework}
+\end{figure*}
+
+Each component is designed to preserve the strengths of deep learning (representation power and accuracy) while adding the benefits of DS theory (uncertainty quantification and conflict detection). The framework is model-agnostic and can incorporate any neural network architecture that produces probabilistic outputs.
 
 \subsection{Belief Assignment from Neural Networks}
 
