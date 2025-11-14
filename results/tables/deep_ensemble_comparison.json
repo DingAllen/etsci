@@ -1,0 +1,38 @@
+{
+  "accuracy": {
+    "ds_ensemble": 98.9,
+    "deep_ensemble": 99.6
+  },
+  "calibration": {
+    "ds_ensemble": {
+      "ece": 0.010619605205555577,
+      "nll": 0.039774316534926676
+    },
+    "deep_ensemble": {
+      "ece": 0.6045535125643168,
+      "nll": 0.9492415379665744
+    }
+  },
+  "ood_detection_auroc": {
+    "DS Conflict": 0.985009,
+    "DS Interval Width": 0.5,
+    "Deep Ens. Entropy": 1.0,
+    "Deep Ens. MI": 0.0041319999999999855
+  },
+  "rejection_auc": {
+    "ds_conflict": 89.96138420342848,
+    "ds_interval": 88.73041812987607,
+    "deep_ensemble_entropy": 89.98017420631615,
+    "deep_ensemble_mi": 89.93120124099816
+  },
+  "uncertainty_on_errors": {
+    "ds_conflict": {
+      "correct": 0.6906016405865066,
+      "incorrect": 0.884195190609421
+    },
+    "de_entropy": {
+      "correct": 1.9304327828164964,
+      "incorrect": 2.087765666646183
+    }
+  }
+}
