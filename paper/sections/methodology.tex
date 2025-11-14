@@ -17,6 +17,48 @@ Our DS-based ensemble framework transforms conventional ensemble learning into a
 
 Each component preserves deep learning's representational power while adding DS theory's uncertainty quantification capabilities. The framework is model-agnostic, working with any architecture producing probabilistic outputs.
 
+\subsection{Post-Processing vs. Architectural Modification: Our Design Choice}
+\label{sec:design_choice}
+
+\textbf{Critical Clarification:} A fundamental question for any DS-based deep learning framework is whether it requires model retraining or can work as post-processing. We explicitly adopt a \textit{post-processing approach} that operates on standard softmax outputs from \textit{any pre-trained CNN models} without architectural modification or retraining.
+
+\textbf{Comparison with Evidential Deep Learning (EDL):} Table~\ref{tab:our_vs_edl} contrasts our approach with EDL~\cite{sensoy2018evidential}, which represents an alternative paradigm for incorporating DS theory into deep learning.
+
+\begin{table}[h]
+\centering
+\caption{Our Post-Processing Framework vs. Evidential Deep Learning}
+\label{tab:our_vs_edl}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Aspect} & \textbf{Our Method} & \textbf{EDL~\cite{sensoy2018evidential}} \\
+\midrule
+Input & Standard softmax & Modified output layer \\
+Architecture & Unchanged & Dirichlet output \\
+Training & Not required & New loss function \\
+Pre-trained models & Compatible & Requires retraining \\
+Black-box models & Applicable & Needs access \\
+Ensemble needed & Yes (multi-model) & No (single model) \\
+Computational cost & $<$1\% (inference) & Training + inference \\
+Deployment time & Immediate & Weeks (retraining) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Advantages of Our Approach:}
+
+\begin{enumerate}
+\item \textbf{Immediate Deployment:} Works with existing pre-trained models (e.g., ImageNet models) without modification
+\item \textbf{Black-Box Compatibility:} Only requires softmax outputs, enabling use with proprietary or third-party models
+\item \textbf{Zero Training Cost:} Computational overhead applies only to inference (< 1\% vs. simple averaging)
+\item \textbf{Ensemble Benefits:} Leverages model diversity across different architectures, training procedures, or initializations
+\item \textbf{Practical Flexibility:} Can be applied/removed without system changes
+\end{enumerate}
+
+\textbf{Trade-offs:} EDL potentially captures uncertainty within a single model via Dirichlet parameterization, while our approach requires multiple models to quantify disagreement. However, ensemble diversity often provides richer uncertainty signals than single-model approaches~\cite{lakshminarayanan2017simple}.
+
+\textbf{Computational Overhead Clarification:} The ``<1\% overhead'' cited in our abstract refers specifically to \textit{inference time} compared to averaging-based ensembles using the same models. Training costs are not increased because we use pre-trained models as-is. In contrast, EDL requires full model retraining with specialized loss functions, representing weeks of computational expense.
+
 \subsection{From Softmax Probabilities to Basic Belief Assignments}
 
 \textbf{The Conversion Challenge:} A critical question is how to transform CNN softmax outputs $\mathbf{p} = [p_1, p_2, \ldots, p_K]$ into DS basic belief assignments (BBAs). This conversion must preserve probabilistic information while enabling DS theory's uncertainty framework.

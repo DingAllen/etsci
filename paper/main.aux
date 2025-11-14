@@ -39,22 +39,31 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Dempster-Shafer Theory}{3}{subsection.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}DS Theory in Machine Learning}{3}{subsection.2.4}\protected@file@percent }
 \citation{sensoy2018evidential}
-\citation{guo2017calibration}
+\citation{sensoy2018evidential}
+\citation{lakshminarayanan2017simple}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{4}{section.3}\protected@file@percent }
 \newlabel{sec:methodology}{{3}{4}{Methodology}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Framework Overview}{4}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}From Softmax Probabilities to Basic Belief Assignments}{4}{subsection.3.2}\protected@file@percent }
-\newlabel{eq:direct}{{1}{4}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.1}{}}
-\newlabel{eq:temperature}{{3}{4}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.3}{}}
-\newlabel{eq:calibrated}{{4}{4}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Dempster's Rule of Combination}{4}{subsection.3.3}\protected@file@percent }
-\newlabel{eq:dempster}{{5}{4}{Dempster's Rule of Combination}{equation.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Post-Processing vs. Architectural Modification: Our Design Choice}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:design_choice}{{3.2}{4}{Post-Processing vs. Architectural Modification: Our Design Choice}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Our Post-Processing Framework vs. Evidential Deep Learning}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:our_vs_edl}{{1}{4}{Our Post-Processing Framework vs. Evidential Deep Learning}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}From Softmax Probabilities to Basic Belief Assignments}{4}{subsection.3.3}\protected@file@percent }
+\citation{sensoy2018evidential}
+\citation{guo2017calibration}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of our DS-based ensemble fusion framework. Individual CNN models generate softmax predictions, which are converted to belief mass functions. These masses are combined using Dempster's rule to produce a fused prediction with explicit uncertainty quantification including belief, plausibility, and conflict measures.}}{5}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:framework}{{1}{5}{Overview of our DS-based ensemble fusion framework. Individual CNN models generate softmax predictions, which are converted to belief mass functions. These masses are combined using Dempster's rule to produce a fused prediction with explicit uncertainty quantification including belief, plausibility, and conflict measures}{figure.caption.2}{}}
-\newlabel{eq:conflict}{{6}{5}{Dempster's Rule of Combination}{equation.3.6}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Conflict-Aware Decision Policy}}{5}{algorithm.1}\protected@file@percent }
+\newlabel{eq:direct}{{1}{5}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.1}{}}
+\newlabel{eq:temperature}{{3}{5}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.3}{}}
+\newlabel{eq:calibrated}{{4}{5}{From Softmax Probabilities to Basic Belief Assignments}{equation.3.4}{}}
 \citation{smets1994transferable}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Dempster's Rule of Combination}{6}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:dempster}{{5}{6}{Dempster's Rule of Combination}{equation.3.5}{}}
+\newlabel{eq:conflict}{{6}{6}{Dempster's Rule of Combination}{equation.3.6}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Conflict-Aware Decision Policy}}{6}{algorithm.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Uncertainty Quantification: Epistemic vs. Aleatoric}{6}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Decision Making and Uncertainty Reporting}{6}{subsection.3.6}\protected@file@percent }
 \citation{krizhevsky2009learning}
 \citation{he2016deep}
 \citation{simonyan2014very}
@@ -62,76 +71,100 @@
 \citation{huang2017densely}
 \citation{gal2016dropout}
 \citation{lakshminarayanan2017simple}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Uncertainty Quantification: Epistemic vs. Aleatoric}{6}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Decision Making and Uncertainty Reporting}{6}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Reliability-Based Weighting}{6}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{6}{section.4}\protected@file@percent }
-\newlabel{sec:experiments}{{4}{6}{Experimental Setup}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset and Training}{6}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baseline Comparisons}{6}{subsection.4.2}\protected@file@percent }
 \citation{guo2017calibration}
 \citation{hendrycks2016baseline}
 \citation{goodfellow2014explaining}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Reliability-Based Weighting}{7}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{7}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{7}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset and Training}{7}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baseline Comparisons}{7}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{7}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Implementation Details}{7}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Ablation Studies}{7}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{7}{section.5}\protected@file@percent }
-\newlabel{sec:results}{{5}{7}{Results and Analysis}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Overall Performance}{7}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Visual Comparison of Methods}{7}{subsection.5.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Classification Accuracy on CIFAR-10 Test Set}}{8}{table.caption.3}\protected@file@percent }
-\newlabel{tab:main_results}{{1}{8}{Classification Accuracy on CIFAR-10 Test Set}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Implementation Details}{8}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Ablation Studies}{8}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{8}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{8}{Results and Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Overall Performance}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Visual Comparison of Methods}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Classification Accuracy on CIFAR-10 Test Set}}{8}{table.caption.4}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{8}{Classification Accuracy on CIFAR-10 Test Set}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Uncertainty Quantification Analysis}{8}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Accuracy comparison across individual models, traditional ensemble methods, and DS-based fusion. DS fusion (rightmost coral bar) achieves the highest accuracy while also providing uncertainty metrics unavailable to other methods.}}{8}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:comparison}{{2}{8}{Accuracy comparison across individual models, traditional ensemble methods, and DS-based fusion. DS fusion (rightmost coral bar) achieves the highest accuracy while also providing uncertainty metrics unavailable to other methods}{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}DS Fusion Process Visualization}{8}{subsection.5.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comprehensive uncertainty analysis from DS fusion: (a) Belief-plausibility intervals for 100 sample predictions showing uncertainty ranges, (b) Distribution of conflict measures across all test samples, (c) Box plot comparing conflict between correct and incorrect predictions, (d) Distribution of uncertainty interval widths. The analysis demonstrates that DS fusion provides meaningful uncertainty quantification, with clear differences between confident and uncertain predictions.}}{9}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:uncertainty}{{3}{9}{Comprehensive uncertainty analysis from DS fusion: (a) Belief-plausibility intervals for 100 sample predictions showing uncertainty ranges, (b) Distribution of conflict measures across all test samples, (c) Box plot comparing conflict between correct and incorrect predictions, (d) Distribution of uncertainty interval widths. The analysis demonstrates that DS fusion provides meaningful uncertainty quantification, with clear differences between confident and uncertain predictions}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Accuracy comparison across individual models, traditional ensemble methods, and DS-based fusion. DS fusion (rightmost coral bar) achieves the highest accuracy while also providing uncertainty metrics unavailable to other methods.}}{9}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:comparison}{{2}{9}{Accuracy comparison across individual models, traditional ensemble methods, and DS-based fusion. DS fusion (rightmost coral bar) achieves the highest accuracy while also providing uncertainty metrics unavailable to other methods}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}DS Fusion Process Visualization}{9}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Calibration Quality}{9}{subsection.5.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Ablation Studies}{9}{subsection.5.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Visualization of the DS fusion process: (a) Softmax predictions from three individual models showing different confidence levels and some disagreement, (b) Fused prediction after applying Dempster's rule, demonstrating how conflicting evidence is resolved, (c) Uncertainty metrics for the predicted class, including belief, plausibility, interval width, and conflict. The example shows how DS fusion synthesizes diverse evidence while quantifying uncertainty.}}{10}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:fusion_process}{{4}{10}{Visualization of the DS fusion process: (a) Softmax predictions from three individual models showing different confidence levels and some disagreement, (b) Fused prediction after applying Dempster's rule, demonstrating how conflicting evidence is resolved, (c) Uncertainty metrics for the predicted class, including belief, plausibility, interval width, and conflict. The example shows how DS fusion synthesizes diverse evidence while quantifying uncertainty}{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Calibration reliability diagrams comparing (a) traditional simple averaging which tends to be overconfident, and (b) DS fusion which achieves better calibration. The diagonal dashed line represents perfect calibration. Smaller gaps between predicted confidence and actual accuracy indicate better calibration. DS fusion reduces calibration error by explicitly modeling uncertainty.}}{10}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:calibration}{{5}{10}{Calibration reliability diagrams comparing (a) traditional simple averaging which tends to be overconfident, and (b) DS fusion which achieves better calibration. The diagonal dashed line represents perfect calibration. Smaller gaps between predicted confidence and actual accuracy indicate better calibration. DS fusion reduces calibration error by explicitly modeling uncertainty}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comprehensive uncertainty analysis from DS fusion: (a) Belief-plausibility intervals for 100 sample predictions showing uncertainty ranges, (b) Distribution of conflict measures across all test samples, (c) Box plot comparing conflict between correct and incorrect predictions, (d) Distribution of uncertainty interval widths. The analysis demonstrates that DS fusion provides meaningful uncertainty quantification, with clear differences between confident and uncertain predictions.}}{10}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:uncertainty}{{3}{10}{Comprehensive uncertainty analysis from DS fusion: (a) Belief-plausibility intervals for 100 sample predictions showing uncertainty ranges, (b) Distribution of conflict measures across all test samples, (c) Box plot comparing conflict between correct and incorrect predictions, (d) Distribution of uncertainty interval widths. The analysis demonstrates that DS fusion provides meaningful uncertainty quantification, with clear differences between confident and uncertain predictions}{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Conflict Analysis}{10}{subsection.5.7}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Conflict Measure Analysis}}{10}{table.caption.9}\protected@file@percent }
-\newlabel{tab:conflict}{{2}{10}{Conflict Measure Analysis}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Conflict Measure Analysis}}{10}{table.caption.10}\protected@file@percent }
+\newlabel{tab:conflict}{{3}{10}{Conflict Measure Analysis}{table.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Confusion Matrix Analysis}{10}{subsection.5.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ablation study results: (a) Effect of ensemble size showing performance gains up to 5 models with diminishing returns, (b) Impact of temperature parameter with optimal range 1.0-1.5, (c) Comparison of belief assignment strategies with direct assignment performing best, (d) Importance of model diversity with heterogeneous architectures significantly outperforming homogeneous ensembles.}}{11}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:ablation}{{6}{11}{Ablation study results: (a) Effect of ensemble size showing performance gains up to 5 models with diminishing returns, (b) Impact of temperature parameter with optimal range 1.0-1.5, (c) Comparison of belief assignment strategies with direct assignment performing best, (d) Importance of model diversity with heterogeneous architectures significantly outperforming homogeneous ensembles}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Visualization of the DS fusion process: (a) Softmax predictions from three individual models showing different confidence levels and some disagreement, (b) Fused prediction after applying Dempster's rule, demonstrating how conflicting evidence is resolved, (c) Uncertainty metrics for the predicted class, including belief, plausibility, interval width, and conflict. The example shows how DS fusion synthesizes diverse evidence while quantifying uncertainty.}}{11}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:fusion_process}{{4}{11}{Visualization of the DS fusion process: (a) Softmax predictions from three individual models showing different confidence levels and some disagreement, (b) Fused prediction after applying Dempster's rule, demonstrating how conflicting evidence is resolved, (c) Uncertainty metrics for the predicted class, including belief, plausibility, interval width, and conflict. The example shows how DS fusion synthesizes diverse evidence while quantifying uncertainty}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Calibration reliability diagrams comparing (a) traditional simple averaging which tends to be overconfident, and (b) DS fusion which achieves better calibration. The diagonal dashed line represents perfect calibration. Smaller gaps between predicted confidence and actual accuracy indicate better calibration. DS fusion reduces calibration error by explicitly modeling uncertainty.}}{11}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:calibration}{{5}{11}{Calibration reliability diagrams comparing (a) traditional simple averaging which tends to be overconfident, and (b) DS fusion which achieves better calibration. The diagonal dashed line represents perfect calibration. Smaller gaps between predicted confidence and actual accuracy indicate better calibration. DS fusion reduces calibration error by explicitly modeling uncertainty}{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Computational Efficiency}{11}{subsection.5.9}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Computational Cost Comparison (per sample)}}{11}{table.caption.11}\protected@file@percent }
-\newlabel{tab:computational}{{3}{11}{Computational Cost Comparison (per sample)}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Computational Cost Comparison (per sample)}}{11}{table.caption.12}\protected@file@percent }
+\newlabel{tab:computational}{{4}{11}{Computational Cost Comparison (per sample)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Out-of-Distribution Detection}{11}{subsection.5.10}\protected@file@percent }
 \citation{goodfellow2014explaining}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Confusion matrices comparing (a) simple average ensemble and (b) DS fusion ensemble on CIFAR-10 test set. Darker colors on the diagonal indicate higher accuracy. DS fusion shows improved diagonal dominance, particularly for challenging classes like cat, dog, and bird, demonstrating better discrimination between visually similar categories.}}{12}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:confusion}{{7}{12}{Confusion matrices comparing (a) simple average ensemble and (b) DS fusion ensemble on CIFAR-10 test set. Darker colors on the diagonal indicate higher accuracy. DS fusion shows improved diagonal dominance, particularly for challenging classes like cat, dog, and bird, demonstrating better discrimination between visually similar categories}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Out-of-Distribution Detection}{12}{subsection.5.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline.}}{12}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:ood}{{8}{12}{Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ablation study results: (a) Effect of ensemble size showing performance gains up to 5 models with diminishing returns, (b) Impact of temperature parameter with optimal range 1.0-1.5, (c) Comparison of belief assignment strategies with direct assignment performing best, (d) Importance of model diversity with heterogeneous architectures significantly outperforming homogeneous ensembles.}}{12}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:ablation}{{6}{12}{Ablation study results: (a) Effect of ensemble size showing performance gains up to 5 models with diminishing returns, (b) Impact of temperature parameter with optimal range 1.0-1.5, (c) Comparison of belief assignment strategies with direct assignment performing best, (d) Importance of model diversity with heterogeneous architectures significantly outperforming homogeneous ensembles}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Adversarial Robustness}{12}{subsection.5.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Confusion matrices comparing (a) simple average ensemble and (b) DS fusion ensemble on CIFAR-10 test set. Darker colors on the diagonal indicate higher accuracy. DS fusion shows improved diagonal dominance, particularly for challenging classes like cat, dog, and bird, demonstrating better discrimination between visually similar categories.}}{13}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:confusion}{{7}{13}{Confusion matrices comparing (a) simple average ensemble and (b) DS fusion ensemble on CIFAR-10 test set. Darker colors on the diagonal indicate higher accuracy. DS fusion shows improved diagonal dominance, particularly for challenging classes like cat, dog, and bird, demonstrating better discrimination between visually similar categories}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline.}}{13}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:ood}{{8}{13}{Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline}{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics.}}{13}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:adversarial}{{9}{13}{Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics}{figure.caption.14}{}}
 \citation{gal2016dropout}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Adversarial Robustness}{13}{subsection.5.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics.}}{13}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:adversarial}{{9}{13}{Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics}{figure.caption.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Adversarial Robustness Results (FGSM, $\epsilon =0.03$)}}{13}{table.caption.14}\protected@file@percent }
-\newlabel{tab:adversarial}{{4}{13}{Adversarial Robustness Results (FGSM, $\epsilon =0.03$)}{table.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Comparison with MC Dropout}{13}{subsection.5.12}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparison with MC Dropout Uncertainty}}{13}{table.caption.15}\protected@file@percent }
-\newlabel{tab:mc_dropout}{{5}{13}{Comparison with MC Dropout Uncertainty}{table.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{13}{section.6}\protected@file@percent }
-\newlabel{sec:discussion}{{6}{13}{Discussion}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Summary of Key Findings}{13}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Theoretical and Practical Advantages}{14}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implications for Safety-Critical Applications}{14}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Insights from Ablation Studies}{14}{subsection.6.4}\protected@file@percent }
+\citation{lakshminarayanan2017simple}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Adversarial Robustness Results (FGSM, $\epsilon =0.03$)}}{14}{table.caption.15}\protected@file@percent }
+\newlabel{tab:adversarial}{{5}{14}{Adversarial Robustness Results (FGSM, $\epsilon =0.03$)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Comparison with MC Dropout}{14}{subsection.5.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparison with MC Dropout Uncertainty}}{14}{table.caption.16}\protected@file@percent }
+\newlabel{tab:mc_dropout}{{6}{14}{Comparison with MC Dropout Uncertainty}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.13}Deep Ensembles: Comprehensive Uncertainty Quality Comparison}{14}{subsection.5.13}\protected@file@percent }
+\newlabel{sec:deep_ensemble_comparison}{{5.13}{14}{Deep Ensembles: Comprehensive Uncertainty Quality Comparison}{subsection.5.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.13.1}Calibration Quality}{14}{subsubsection.5.13.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Calibration Metrics: DS Fusion vs Deep Ensembles}}{14}{table.caption.17}\protected@file@percent }
+\newlabel{tab:calibration}{{7}{14}{Calibration Metrics: DS Fusion vs Deep Ensembles}{table.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Reliability diagrams comparing calibration: (left) DS Fusion perfectly tracks the diagonal (ECE=0.011), while (right) Deep Ensemble shows significant overconfidence gaps (ECE=0.605). DS fusion's superior calibration makes it more trustworthy for high-stakes decisions.}}{14}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:calibration_comparison}{{10}{14}{Reliability diagrams comparing calibration: (left) DS Fusion perfectly tracks the diagonal (ECE=0.011), while (right) Deep Ensemble shows significant overconfidence gaps (ECE=0.605). DS fusion's superior calibration makes it more trustworthy for high-stakes decisions}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.13.2}OOD Detection: Conflict vs Entropy}{14}{subsubsection.5.13.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces OOD Detection Performance (AUROC on SVHN)}}{15}{table.caption.19}\protected@file@percent }
+\newlabel{tab:ood_deep_comparison}{{8}{15}{OOD Detection Performance (AUROC on SVHN)}{table.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces OOD detection ROC curves. Both Deep Ensemble entropy (blue) and DS conflict (red) achieve near-perfect separation (AUROC > 0.98). DS conflict offers the advantage of explicit conflict interpretation unavailable in entropy-based measures.}}{15}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:ood_deep_comparison}{{11}{15}{OOD detection ROC curves. Both Deep Ensemble entropy (blue) and DS conflict (red) achieve near-perfect separation (AUROC > 0.98). DS conflict offers the advantage of explicit conflict interpretation unavailable in entropy-based measures}{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.13.3}Summary: DS Fusion vs Deep Ensembles}{15}{subsubsection.5.13.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.14}Selective Prediction via Conflict-Based Rejection}{15}{subsection.5.14}\protected@file@percent }
+\newlabel{sec:rejection}{{5.14}{15}{Selective Prediction via Conflict-Based Rejection}{subsection.5.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.14.1}Rejection Curve Analysis}{15}{subsubsection.5.14.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Selective prediction curves: (left) Accuracy vs coverage showing that rejecting high-conflict samples improves accuracy, (right) Accuracy gain over baseline. DS conflict (red) enables the most effective rejection, improving from 98.9\% to 99.8\% accuracy by rejecting 20\% highest-conflict samples.}}{15}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:rejection}{{12}{15}{Selective prediction curves: (left) Accuracy vs coverage showing that rejecting high-conflict samples improves accuracy, (right) Accuracy gain over baseline. DS conflict (red) enables the most effective rejection, improving from 98.9\% to 99.8\% accuracy by rejecting 20\% highest-conflict samples}{figure.caption.21}{}}
+\citation{gal2016dropout}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.14.2}Practical Deployment Policies}{16}{subsubsection.5.14.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.15}Comparison with MC Dropout}{16}{subsection.5.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comparison with MC Dropout Uncertainty}}{16}{table.caption.22}\protected@file@percent }
+\newlabel{tab:mc_dropout}{{9}{16}{Comparison with MC Dropout Uncertainty}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{16}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{16}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Summary of Key Findings}{16}{subsection.6.1}\protected@file@percent }
 \citation{arxiv2024feature}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Theoretical and Practical Advantages}{17}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implications for Safety-Critical Applications}{17}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Insights from Ablation Studies}{17}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Comparison with Recent Work}{17}{subsection.6.5}\protected@file@percent }
 \citation{sensoy2018evidential}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Comparison with Recent Work}{15}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Limitations and Future Directions}{15}{subsection.6.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Practical Recommendations}{16}{subsection.6.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{16}{section.7}\protected@file@percent }
-\newlabel{sec:conclusion}{{7}{16}{Conclusion}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Main Contributions Revisited}{16}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Broader Impact}{16}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Terminology Clarification: ``Adaptive'' Fusion}{18}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Model Correlation and Its Effects on DS Fusion}{18}{subsection.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Limitations and Future Directions}{19}{subsection.6.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Practical Recommendations}{20}{subsection.6.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{20}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{20}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Main Contributions Revisited}{20}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Broader Impact}{20}{subsection.7.2}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{references}
 \bibcite{arxiv2024feature}{1}
@@ -141,9 +174,9 @@
 \bibcite{dietterich2000ensemble}{5}
 \bibcite{freund1997decision}{6}
 \bibcite{gal2016dropout}{7}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Future Research Directions}{17}{subsection.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Concluding Remarks}{17}{subsection.7.4}\protected@file@percent }
 \bibcite{goodfellow2014explaining}{8}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Future Research Directions}{21}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Concluding Remarks}{21}{subsection.7.4}\protected@file@percent }
 \bibcite{guo2017calibration}{9}
 \bibcite{he2016deep}{10}
 \bibcite{hendrycks2016baseline}{11}
@@ -163,4 +196,4 @@
 \bibcite{smets1994transferable}{25}
 \bibcite{wolpert1992stacked}{26}
 \bibcite{xu1992methods}{27}
-\gdef \@abspage@last{18}
+\gdef \@abspage@last{22}

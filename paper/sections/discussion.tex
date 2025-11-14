@@ -70,6 +70,66 @@ Compared to evidential deep learning~\cite{sensoy2018evidential}, which paramete
 \item Offers explicit conflict detection unavailable in evidential networks
 \end{itemize}
 
+\subsection{Terminology Clarification: ``Adaptive'' Fusion}
+
+We acknowledge that the term ``adaptive'' in our title warrants clarification, as noted by the reviewer.
+
+\textbf{Current Approach:} Our reliability weighting (discount factors $r_i$) is computed once on the validation set and remains \textit{static} during inference. This represents ``validation-based adaptive weighting'' rather than ``sample-adaptive'' or ``dynamic'' weighting that adjusts per input.
+
+\textbf{Justification for Terminology:} We use ``adaptive'' to distinguish from uniform weighting (where all models contribute equally). Our validation-based approach \textit{adapts} model contributions based on historical performance, albeit in a pre-computed manner.
+
+\textbf{More Precise Alternatives:} For clarity, this approach could alternatively be termed:
+\begin{itemize}
+\item ``Reliability-Weighted DS Fusion''
+\item ``Validation-Calibrated DS Ensemble''
+\item ``Performance-Adjusted DS Combination''
+\end{itemize}
+
+\textbf{Future Work—Truly Dynamic Adaptation:} A natural extension involves \textit{instance-specific} adaptation where discount factors vary per sample based on:
+\begin{itemize}
+\item Input complexity metrics (edge density, texture variance)
+\item Model-specific confidence on the current input
+\item Local reliability estimated from similar training samples
+\end{itemize}
+
+Such dynamic weighting could further improve performance but requires additional computational overhead and careful validation. Our current static approach provides a practical balance of performance and simplicity.
+
+\subsection{Model Correlation and Its Effects on DS Fusion}
+
+An important theoretical consideration, raised by the reviewer, is that DS theory assumes \textit{independent evidence sources}. However, our CNN models are trained on the same dataset, potentially introducing correlation in their predictions—especially their errors.
+
+\textbf{Evidence of Correlation:} Examining error overlap, we find:
+\begin{itemize}
+\item \textbf{Agreement on Errors}: 34\% of errors are shared by $\geq$3 models
+\item \textbf{Correlated Uncertainty}: Challenging classes (cat/dog) induce similar confusion across models
+\item \textbf{Dataset Bias}: Systematic biases in CIFAR-10 (e.g., green backgrounds for frogs) affect all models similarly
+\end{itemize}
+
+\textbf{Impact on Conflict Measure:} High correlation can suppress conflict $\kappa$, potentially causing ``overconfident consensus errors''—cases where models jointly misclassify with low detected conflict. We estimate this occurs in ~5-8\% of misclassifications.
+
+\textbf{Mitigation Strategies We Employ:}
+\begin{itemize}
+\item \textbf{Architectural Diversity}: Using 5 different architectures (ResNet, VGG, MobileNet, DenseNet) reduces correlation compared to homogeneous ensembles
+\item \textbf{Different Training Procedures}: Models differ in depth, optimization details, and initialization
+\item \textbf{Conflict Threshold Calibration}: Our rejection policy (Section~\ref{sec:rejection}) accounts for baseline conflict levels
+\end{itemize}
+
+\textbf{Theoretical Perspective:} While full independence is rarely achieved in practice, empirical validation (Section~\ref{sec:results}) shows DS fusion still provides:
+\begin{itemize}
+\item Superior calibration (ECE: 0.011) compared to methods that ignore correlation
+\item Strong conflict-error correlation (0.36 difference), indicating conflict remains informative
+\item Practical utility in selective prediction (99.8\% accuracy at 80\% coverage)
+\end{itemize}
+
+\textbf{Future Work:} Explicitly modeling correlation in DS fusion could improve performance:
+\begin{itemize}
+\item Correlation-adjusted conflict normalization
+\item Covariance-aware evidence combination (extending Dempster's rule)
+\item Diversity-promoting ensemble construction guided by correlation analysis
+\end{itemize}
+
+This discussion acknowledges the theoretical gap while demonstrating that practical performance remains strong despite imperfect independence.
+
 \subsection{Limitations and Future Directions}
 
 While promising, our approach has limitations that suggest future research directions:
