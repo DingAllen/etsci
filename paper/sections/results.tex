@@ -40,7 +40,7 @@ Figure~\ref{fig:comparison} provides a visual comparison of accuracy across all 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/method_comparison.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/method_comparison_polished.png}
 \caption{Accuracy comparison across individual models, traditional ensemble methods, and DS-based fusion. DS fusion (rightmost coral bar) achieves the highest accuracy while also providing uncertainty metrics unavailable to other methods.}
 \label{fig:comparison}
 \end{figure}
@@ -53,7 +53,7 @@ Figure~\ref{fig:uncertainty} presents a comprehensive analysis of uncertainty me
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{../results/figures/uncertainty_analysis.png}
+\includegraphics[width=0.95\textwidth]{../results/figures/uncertainty_analysis_polished.png}
 \caption{Comprehensive uncertainty analysis from DS fusion: (a) Belief-plausibility intervals for 100 sample predictions showing uncertainty ranges, (b) Distribution of conflict measures across all test samples, (c) Box plot comparing conflict between correct and incorrect predictions, (d) Distribution of uncertainty interval widths. The analysis demonstrates that DS fusion provides meaningful uncertainty quantification, with clear differences between confident and uncertain predictions.}
 \label{fig:uncertainty}
 \end{figure*}
@@ -76,7 +76,7 @@ Figure~\ref{fig:fusion_process} illustrates the DS fusion mechanism on a represe
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{../results/figures/ds_fusion_process.png}
+\includegraphics[width=0.95\textwidth]{../results/figures/ds_fusion_process_polished.png}
 \caption{Visualization of the DS fusion process: (a) Softmax predictions from three individual models showing different confidence levels and some disagreement, (b) Fused prediction after applying Dempster's rule, demonstrating how conflicting evidence is resolved, (c) Uncertainty metrics for the predicted class, including belief, plausibility, interval width, and conflict. The example shows how DS fusion synthesizes diverse evidence while quantifying uncertainty.}
 \label{fig:fusion_process}
 \end{figure*}
@@ -94,7 +94,7 @@ Figure~\ref{fig:calibration} compares calibration reliability between traditiona
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/calibration_comparison.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/calibration_comparison_polished.png}
 \caption{Calibration reliability diagrams comparing (a) traditional simple averaging which tends to be overconfident, and (b) DS fusion which achieves better calibration. The diagonal dashed line represents perfect calibration. Smaller gaps between predicted confidence and actual accuracy indicate better calibration. DS fusion reduces calibration error by explicitly modeling uncertainty.}
 \label{fig:calibration}
 \end{figure}
@@ -107,7 +107,7 @@ Figure~\ref{fig:ablation} presents comprehensive ablation studies examining four
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{../results/figures/ablation_study.png}
+\includegraphics[width=0.95\textwidth]{../results/figures/ablation_study_polished.png}
 \caption{Ablation study results: (a) Effect of ensemble size showing performance gains up to 5 models with diminishing returns, (b) Impact of temperature parameter with optimal range 1.0-1.5, (c) Comparison of belief assignment strategies with direct assignment performing best, (d) Importance of model diversity with heterogeneous architectures significantly outperforming homogeneous ensembles.}
 \label{fig:ablation}
 \end{figure*}
@@ -149,7 +149,7 @@ Figure~\ref{fig:confusion} compares confusion matrices between simple averaging 
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{../results/figures/confusion_matrices.png}
+\includegraphics[width=0.95\textwidth]{../results/figures/confusion_matrices_polished.png}
 \caption{Confusion matrices comparing (a) simple average ensemble and (b) DS fusion ensemble on CIFAR-10 test set. Darker colors on the diagonal indicate higher accuracy. DS fusion shows improved diagonal dominance, particularly for challenging classes like cat, dog, and bird, demonstrating better discrimination between visually similar categories.}
 \label{fig:confusion}
 \end{figure*}
@@ -189,7 +189,7 @@ A critical test of uncertainty quantification is detecting when inputs come from
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/ood_detection.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/ood_detection_polished.png}
 \caption{Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline.}
 \label{fig:ood}
 \end{figure}
@@ -220,7 +220,7 @@ We generate adversarial examples using FGSM ($\epsilon = 0.03$) and measure unce
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/adversarial_robustness.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/adversarial_robustness_polished.png}
 \caption{Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics.}
 \label{fig:adversarial}
 \end{figure}
@@ -315,7 +315,7 @@ Figure~\ref{fig:calibration_comparison} shows reliability diagrams comparing cal
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/calibration_deep_vs_ds.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/calibration_deep_vs_ds_polished.png}
 \caption{Reliability diagrams comparing calibration: (left) DS Fusion perfectly tracks the diagonal (ECE=0.011), while (right) Deep Ensemble shows significant overconfidence gaps (ECE=0.605). DS fusion's superior calibration makes it more trustworthy for high-stakes decisions.}
 \label{fig:calibration_comparison}
 \end{figure}
@@ -344,7 +344,7 @@ Both methods achieve excellent OOD detection (Deep Ensemble entropy: 1.000, DS c
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/ood_deep_vs_ds.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/ood_deep_vs_ds_polished.png}
 \caption{OOD detection ROC curves. Both Deep Ensemble entropy (blue) and DS conflict (red) achieve near-perfect separation (AUROC > 0.98). DS conflict offers the advantage of explicit conflict interpretation unavailable in entropy-based measures.}
 \label{fig:ood_deep_comparison}
 \end{figure}
@@ -372,7 +372,7 @@ We evaluate accuracy at different coverage levels by rejecting high-conflict sam
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/rejection_deep_vs_ds.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/rejection_deep_vs_ds_polished.png}
 \caption{Selective prediction curves: (left) Accuracy vs coverage showing that rejecting high-conflict samples improves accuracy, (right) Accuracy gain over baseline. DS conflict (red) enables the most effective rejection, improving from 98.9\% to 99.8\% accuracy by rejecting 20\% highest-conflict samples.}
 \label{fig:rejection}
 \end{figure}
