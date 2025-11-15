@@ -8,7 +8,7 @@ A critical test of uncertainty quantification is detecting when inputs come from
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/ood_detection.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/ood_detection_polished.png}
 \caption{Out-of-distribution detection results: (Left) Distribution of conflict measures for in-distribution (CIFAR-10) vs out-of-distribution (SVHN) samples, showing clear separation. (Right) ROC curve demonstrating strong OOD detection performance (AUROC=0.948), significantly better than random baseline.}
 \label{fig:ood}
 \end{figure}
@@ -39,7 +39,7 @@ We generate adversarial examples using FGSM ($\epsilon = 0.03$) and measure unce
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{../results/figures/adversarial_robustness.png}
+\includegraphics[width=0.48\textwidth]{../results/figures/adversarial_robustness_polished.png}
 \caption{Adversarial robustness analysis: (Left) Conflict distributions for clean vs FGSM-attacked images showing increased uncertainty under attack. (Center) Uncertainty interval widths increase substantially for adversarial examples. (Right) Summary comparison demonstrating that DS fusion detects adversarial perturbations through elevated uncertainty metrics.}
 \label{fig:adversarial}
 \end{figure}
