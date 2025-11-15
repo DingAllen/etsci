@@ -25,7 +25,7 @@ City, Country\\
 \maketitle
 
 \begin{abstract}
-Deep ensemble methods provide state-of-the-art performance, yet traditional fusion (averaging, voting) and even Deep Ensembles fail to provide interpretable conflict measures critical for safety-critical applications. We propose a \textit{post-processing} Dempster-Shafer (DS) evidence theory framework that works with \textit{any pre-trained CNN models} without architectural modification or retraining. Our approach converts standard softmax outputs to DS mass functions, combines them via Dempster's rule with explicit conflict detection, and generates predictions with comprehensive uncertainty quantification (belief, plausibility, conflict). On CIFAR-10 with five diverse CNNs, DS fusion achieves 92.3\% accuracy with \textbf{dramatically superior calibration (ECE: 0.011 vs Deep Ensemble: 0.605, a 98.2\% improvement)} and excellent OOD detection (AUROC: 0.985 on SVHN). Critically, our conflict measure enables selective prediction: rejecting 20\% highest-conflict samples improves accuracy to 99.8\%. With inference-only overhead $<$1\%, our framework is immediately deployable with existing models for medical diagnosis, autonomous driving, and security systems where uncertainty quantification is essential.
+Deep ensemble methods provide state-of-the-art performance, yet traditional fusion (averaging, voting) and even Deep Ensembles fail to provide interpretable conflict measures critical for safety-critical applications. We propose a \textit{post-processing} Dempster-Shafer (DS) evidence theory framework that works with \textit{any pre-trained CNN models} without architectural modification or retraining. Our approach converts standard softmax outputs to DS basic belief assignments, combines them via Dempster's rule with explicit conflict detection, and generates predictions with comprehensive uncertainty quantification (belief, plausibility, conflict). On CIFAR-10 with five diverse CNNs, DS fusion achieves 92.3\% accuracy with \textbf{dramatically superior calibration (ECE: 0.011 vs Deep Ensemble: 0.605, a 98.2\% improvement)} and excellent OOD detection (AUROC: 0.948 on SVHN). Critically, our conflict measure enables selective prediction: rejecting 20\% highest-conflict samples improves accuracy to 99.8\%. With inference-only overhead $<$1\%, our framework is immediately deployable with existing models for medical diagnosis, autonomous driving, and security systems where uncertainty quantification is essential.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Dempster-Shafer theory, evidence theory, ensemble learning, uncertainty quantification, image classification, CIFAR-10, deep learning, calibration
@@ -63,7 +63,7 @@ Our specific contributions are:
 \item \textbf{Extensive Empirical Validation}: Beyond standard accuracy evaluation, we demonstrate:
    \begin{itemize}
    \item \textbf{In-distribution performance}: 92.3\% accuracy on CIFAR-10, outperforming averaging (91.5\%) and voting (91.2\%)
-   \item \textbf{Out-of-distribution detection}: AUROC 0.94 on SVHN, demonstrating robust uncertainty for unfamiliar data
+   \item \textbf{Out-of-distribution detection}: AUROC 0.948 on SVHN, demonstrating robust uncertainty for unfamiliar data
    \item \textbf{Adversarial robustness}: Increased uncertainty under FGSM attacks
    \item \textbf{Conflict-error correlation}: 0.36 higher conflict for incorrect predictions ($p < 0.001$)
    \end{itemize}
@@ -71,7 +71,7 @@ Our specific contributions are:
 
 \subsection{Why This Matters}
 
-Our work addresses a fundamental gap in ensemble learning: the ability to quantify and interpret uncertainty. The strong correlation between conflict measures and prediction errors validates DS theory's practical utility—high conflict reliably signals uncertain predictions. Combined with robust OOD detection (AUROC 0.94), our framework enables:
+Our work addresses a fundamental gap in ensemble learning: the ability to quantify and interpret uncertainty. The strong correlation between conflict measures and prediction errors validates DS theory's practical utility—high conflict reliably signals uncertain predictions. Combined with robust OOD detection (AUROC 0.948), our framework enables:
 
 \begin{itemize}
 \item \textbf{Selective prediction}: Reject high-uncertainty cases for human review
@@ -776,13 +776,13 @@ We compare DS conflict measure against Deep Ensemble's predictive entropy and mu
 \midrule
 Predictive Entropy & 1.000 & Deep Ensemble \\
 Mutual Information & 0.004 & Deep Ensemble \\
-\textbf{Conflict ($\kappa$)} & \textbf{0.985} & \textbf{DS Fusion} \\
+\textbf{Conflict ($\kappa$)} & \textbf{0.948} & \textbf{DS Fusion} \\
 Interval Width & 0.500 & DS Fusion \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Both methods achieve excellent OOD detection (Deep Ensemble entropy: 1.000, DS conflict: 0.985). However, DS fusion provides additional interpretability: conflict directly quantifies model disagreement, while entropy is less intuitive. Figure~\ref{fig:ood_deep_comparison} shows ROC curves.
+Both methods achieve excellent OOD detection (Deep Ensemble entropy: 1.000, DS conflict: 0.948). However, DS fusion provides additional interpretability: conflict directly quantifies model disagreement, while entropy is less intuitive. Figure~\ref{fig:ood_deep_comparison} shows ROC curves.
 
 \begin{figure}[h]
 \centering
