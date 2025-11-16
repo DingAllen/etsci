@@ -1,12 +1,12 @@
 {
   "fgsm": {
-    "clean_accuracy": 0.92,
-    "adv_accuracy": 0.65,
-    "clean_conflict": 0.18894204299454334,
-    "adv_conflict": 0.3633256945161847,
-    "conflict_increase": 0.17438365152164134,
-    "clean_interval": 0.06009877468107151,
-    "adv_interval": 0.1791571233204163,
-    "interval_increase": 0.1190583486393448
+    "clean_accuracy": 0.12,
+    "adv_accuracy": 0.014,
+    "clean_conflict": 0.8999020911455154,
+    "adv_conflict": 0.8999017502069473,
+    "conflict_increase": -3.409385681552024e-07,
+    "clean_interval": 0.0,
+    "adv_interval": 0.0,
+    "interval_increase": 0.0
   }
 }
