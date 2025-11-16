@@ -187,7 +187,7 @@ etsci/
 3. **Uncertainty Analysis** — 4-panel: belief/plausibility, conflict, box plots, intervals
 4. **Calibration Comparison** — Side-by-side reliability diagrams
 5. **Ablation Study** — 4-panel: ensemble size, temperature, strategies, diversity
-6. **OOD Detection** — Distributions + ROC curve (AUROC 0.985)
+6. **OOD Detection** — Distributions + ROC curve (AUROC 0.948)
 7. **Adversarial Robustness** — 3-panel attack response
 8. **Calibration Deep vs DS** — **Flagship result** showing 98% ECE improvement
 9. **OOD Deep vs DS** — ROC comparison (both excellent)
@@ -338,7 +338,7 @@ auroc, fpr95 = evaluate_ood(
     metric='conflict'  # Use conflict measure
 )
 
-print(f"OOD Detection AUROC: {auroc:.3f}")  # 0.985
+print(f"OOD Detection AUROC: {auroc:.3f}")  # 0.948
 print(f"FPR@95: {fpr95:.3f}")  # 0.196
 ```
 
