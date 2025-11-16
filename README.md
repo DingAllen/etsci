@@ -28,7 +28,7 @@
 | **Accuracy** | 92.3% | 91.5% | +0.8% |
 | **ECE (Calibration)** | 0.011 | 0.605 | **-98.2%** |
 | **NLL** | 0.040 | 0.949 | -95.8% |
-| **OOD AUROC** | 0.985 | 1.000 | Both excellent |
+| **OOD AUROC** | 0.948 | 1.000 | Both excellent |
 | **Selective Pred.** | 99.8% @ 80% | 92.3% @ 100% | +7.5% |
 | **Inference Overhead** | <1% | - | Minimal |
 
@@ -111,7 +111,7 @@ predictions = ds_ensemble.predict_with_rejection(
 
 ### Experimental Validation
 - **In-Distribution**: 92.3% accuracy on CIFAR-10
-- **OOD Detection**: AUROC 0.985 on SVHN (gold standard met)
+- **OOD Detection**: AUROC 0.948 on SVHN (gold standard met)
 - **Adversarial**: 92% conflict increase under FGSM attack
 - **Calibration**: ECE 0.011 (98% better than Deep Ensembles)
 - **Selective**: 99.8% at 80% coverage

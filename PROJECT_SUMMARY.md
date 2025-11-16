@@ -26,7 +26,7 @@ This project implements a comprehensive research application of Dempster-Shafer 
 | **Accuracy** | 92.3% | 91.5% (avg) | +0.8% |
 | **ECE (Calibration)** | 0.011 | 0.605 (DE) | **-98.2%** |
 | **NLL** | 0.040 | 0.949 (DE) | -95.8% |
-| **OOD AUROC (SVHN)** | 0.985 | 1.000 (DE) | Both excellent |
+| **OOD AUROC (SVHN)** | 0.948 | 1.000 (DE) | Both excellent |
 | **Selective Prediction** | 99.8% @ 80% coverage | 92.3% @ 100% | +7.5% |
 | **Inference Overhead** | <1% vs averaging | - | Minimal |
 
@@ -112,7 +112,7 @@ etsci/
 
 **Out-of-Distribution Detection** (Gold Standard)
 - SVHN dataset as OOD test
-- AUROC: 0.985 (conflict measure)
+- AUROC: 0.948 (conflict measure)
 - Mean conflict: 0.757 (OOD) vs 0.327 (in-dist) — 131% increase
 - Comparable to Deep Ensemble entropy (AUROC: 1.000)
 
@@ -187,7 +187,7 @@ etsci/
 3. **Uncertainty Analysis** — 4-panel: belief/plausibility, conflict, box plots, intervals
 4. **Calibration Comparison** — Side-by-side reliability diagrams
 5. **Ablation Study** — 4-panel: ensemble size, temperature, strategies, diversity
-6. **OOD Detection** — Distributions + ROC curve (AUROC 0.985)
+6. **OOD Detection** — Distributions + ROC curve (AUROC 0.948)
 7. **Adversarial Robustness** — 3-panel attack response
 8. **Calibration Deep vs DS** — **Flagship result** showing 98% ECE improvement
 9. **OOD Deep vs DS** — ROC comparison (both excellent)
@@ -338,7 +338,7 @@ auroc, fpr95 = evaluate_ood(
     metric='conflict'  # Use conflict measure
 )
 
-print(f"OOD Detection AUROC: {auroc:.3f}")  # 0.985
+print(f"OOD Detection AUROC: {auroc:.3f}")  # 0.948
 print(f"FPR@95: {fpr95:.3f}")  # 0.196
 ```
 

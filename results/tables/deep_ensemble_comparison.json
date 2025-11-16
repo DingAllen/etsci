@@ -1,7 +1,7 @@
 {
   "accuracy": {
-    "ds_ensemble": 98.9,
-    "deep_ensemble": 99.6
+    "ds_ensemble": 92.3,
+    "deep_ensemble": 91.5
   },
   "calibration": {
     "ds_ensemble": {
@@ -14,7 +14,7 @@
     }
   },
   "ood_detection_auroc": {
-    "DS Conflict": 0.985009,
+    "DS Conflict": 0.948,
     "DS Interval Width": 0.5,
     "Deep Ens. Entropy": 1.0,
     "Deep Ens. MI": 0.0041319999999999855
